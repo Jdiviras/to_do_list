@@ -26,7 +26,10 @@ class _HomePageState extends State<HomePage> {
           builder: (context) => const MyNoteBuilder(),
         ),
       );
-        },),
+        },
+        child: Icon(Icons.add),
+        
+        ),
       body: MasonryGridView.count(
         crossAxisCount: 2,
         mainAxisSpacing: 8,
