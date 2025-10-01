@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:hive/hive.dart';
+import 'package:to_do_list/database/db.dart';
 part 'note.g.dart';
 
 @HiveType(typeId: 1)
@@ -21,9 +24,27 @@ class Note extends HiveObject{
     this.userKey,
   });
 
-  void createNote(String title, String content, int color){
 
+  factory Note.
+  fromUI({
+   required String title,
+   required String content,
+   required Color color,
+   required int? userKey,
+  }) {
+    return Note(
+    title: title,
+    content: content,
+    color: color.value, // convertimos Color a int
+    userKey: userKey,
+    );
   }
+
+  Color get flutterColor => Color(color);
+
+
+  
+
 
 
 }

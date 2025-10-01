@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:to_do_list/controllers/note_controller.dart';
 import 'package:to_do_list/models/note.dart';
+import 'package:to_do_list/widgets/my_note_builder.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,29 +11,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-List<Note> notes = [
-  Note(
-    title: "Buenos días",
-    content:
-        "Et consectetur proident consectetur laboris culpa. Culpa aliqua consectetur Lorem adipisicing ipsum labore anim nostrud cillum proident cupidatat. Deserunt nostrud non sunt nostrud. Minim cillum ut officia deserunt ut adipisicing nulla laborum tempor.",
-  ),
-  Note(
-    title: "Bla bla bla bla bla bla bla",
-    content: "content",
-    color: Colors.red,
-  ),
-
-  Note(
-    title: "Buenos días",
-    content:
-        "Et consectetur proident consectetur laboris culpa. Culpa aliqua consectetur Lorem adipisicing ipsum labore anim nostrud cillum proident cupidatat. Deserunt nostrud non sunt nostrud. Minim cillum ut officia deserunt ut adipisicing nulla laborum tempor.",
-  ),
-  Note(
-    title: "Bla bla bla bla bla bla bla",
-    content: "content",
-    color: Colors.red,
-  ),
-];
+List<Note> notes = NoteController.getNotes();
 
 class _HomePageState extends State<HomePage> {
   @override
@@ -39,6 +19,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Color(0xFFE3F2FD),
       appBar: AppBar(title: Text('Notes'), backgroundColor: Colors.grey[100]),
+      floatingActionButton: FloatingActionButton(
+      onPressed: () {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (context) => const MyNoteBuilder(),
+        ),
+      );
+        },),
       body: MasonryGridView.count(
         crossAxisCount: 2,
         mainAxisSpacing: 8,
@@ -47,7 +35,7 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, index) {
           final note = notes[index];
           return Card(
-            color: note.color,
+            color: note.flutterColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),

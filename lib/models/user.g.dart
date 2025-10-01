@@ -20,7 +20,6 @@ class UserAdapter extends TypeAdapter<User> {
       username: fields[0] as String,
       email: fields[1] as String,
       password: fields[2] as String,
-      notes: (fields[3] as List).cast<Note>(),
     );
   }
 
@@ -33,9 +32,7 @@ class UserAdapter extends TypeAdapter<User> {
       ..writeByte(1)
       ..write(obj.email)
       ..writeByte(2)
-      ..write(obj.password)
-      ..writeByte(3)
-      ..write(obj.notes);
+      ..write(obj.password);
   }
 
   @override

@@ -12,30 +12,16 @@ class User extends HiveObject{
   String email;
   @HiveField(2)
   String password;
-  @HiveField(3)
-  List<Note> notes;
 
   User({
     required this.username,
     required this.email,
     required this.password,
-    this.notes = const[],
   });
 
 
-  static void Create(User user){
-    userBox.add(
-      User(email: "jdiviras@gmail.com", username: "Jdiviras", password: "Password")
-    );
 
 
-  }
-
-  static void Seeder(){
-    User jordi = User(username: "jdiviras",email: "jdiviras@gmail.com",password: "pass");
-    Create(jordi);
-
-  }
 
 
 }
